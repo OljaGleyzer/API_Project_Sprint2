@@ -1,4 +1,7 @@
-
+@font-face {
+    font-family: 'GameOfThrones';
+    src: url(GameOfThrones.ttf);
+}
 .containerBody{
     font-family: -apple-system, BlinkMacSystemFont,
     “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
@@ -7,18 +10,34 @@
     background-color: rgb(213, 208, 208);
     position: relative;
     padding-bottom: 24px;
-    min-width: 100vh;
+    /* min-width: 100vh; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     
+}
+
+.navbar-brand{
+    font-family: 'GameOfThrones', sans-serif;
+}
+h1{
+    font-family: 'GameOfThrones', sans-serif;
+}
+h2{
+    font-family: 'GameOfThrones', sans-serif;
 }
 .moreText{
     display: none;
 }
+h3{
+    font-family: 'GameOfThrones', sans-serif;
 
-/* footer{
-    color: white;
-    padding:0; */
-    /* position:absolute;
-    bottom:0;
-    width:100%;
-    margin-bottom: 0; 
-}*/
+}
+
+.quote-container{
+background-color: rgb(205, 206, 201);
+}
+
+footer{
+    margin-top: auto;
+    }
