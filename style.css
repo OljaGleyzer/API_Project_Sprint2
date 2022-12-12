@@ -34,6 +34,11 @@ h3{
 
 }
 
+/* .moreText{
+    display:flex;
+    align-content:space-between;
+    align-items: flex-start;
+} */
 .quote-container{
 background-color: rgb(205, 206, 201);
 }

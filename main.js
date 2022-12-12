@@ -25,18 +25,18 @@ const showMore = (house) => {
   // console.log("house :>> ", house);
   //condition to check house = stark targaryen or lennister
   if (house === "stark") {
-    spanStark.style.display = "block";
+    spanStark.style.display = "inline";
   } else {
     spanStark.style.display = "none";
   }
   if (house === "lennister") {
-    spanLennister.style.display = "block";
+    spanLennister.style.display = "inline";
     //depending on the house
   } else {
     spanLennister.style.display = "none";
   }
   if (house === "targaryen") {
-    spanTargaryen.style.display = "block";
+    spanTargaryen.style.display = "inline";
   } else {
     spanTargaryen.style.display = "none";
   }
