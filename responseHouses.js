@@ -7,10 +7,10 @@ function getData() {
     })
     .then((data) => {
       console.log("data :>> ", data);
+
       displayData(data);
-      showDropdownFilters(data);
-      //displayCharacter(randomData);
-      //getQuote(randomData);
+      showFilters(data);
+      addEventsListeners(data);
     })
     .catch((error) => {
       console.log("error :>> ", error);
@@ -21,17 +21,39 @@ getData();
 
 function displayData(data) {
   const tBody = document.getElementById("tBody");
+  // const houseArray = [data.house.name];
+  // console.log("data[0].house.name :>> ", data[0].house.name);
+  const dropdown = document.getElementById("myDropdown1");
+  let housesArray = []; //filtered Array of houses without 0 value
+  for (let i = 0; i < data.length; i++) {
+    // console.log(" data[i] :>> ", data[i].house.name);
+
+    // console.log("housesArray :>> ", housesArray);
+    // console.log(
+    //   'housesArra.includes(") :>> ',
+    //   housesArray.includes("House Tarly of Horn Hill")
+    // );
+
+    //clean duplicates
+    // check if data[i] is already inside the housesArray
+    //if it is not : a) push it to the array, b) generate an <option> for the dropdown
+    if (data[i].house !== null && !housesArray.includes(data[i].house.name)) {
+      housesArray.push(data[i].house.name);
+      const option = document.createElement("option");
+      option.value = data[i].house.name;
+      option.innerText = data[i].house.name;
+      dropdown.appendChild(option);
+    }
+  }
 
   for (let i = 0; i < data.length; i++) {
-    // let members = [];
-    // for (let j = 0; j < data[i].members.length; j++) {
-    //   // console.log("members:>> ", data[i].members);
-    //   members.push(data[i].members[j].name);
-    // }
-
     let tr = document.createElement("tr");
     let td1 = document.createElement("td");
-    td1.innerText = data[i].house.name;
+    if (data[i].house === null) {
+      td1.innerText = "House not known";
+    } else {
+      td1.innerText = data[i].house.name;
+    }
     let td2 = document.createElement("td");
     td2.innerText = data[i].name;
 
@@ -41,24 +63,24 @@ function displayData(data) {
   }
 }
 
-//Dropdown Filters
+// Connect Dropfown Filters from html with the table from JS to filter
 
-//Get the reference to the table
-function showDropdownFilters() {
-  let table = document.getElementById("tBody");
-  //Loop through the rows
-  for (let i = 0; i < tBody.rows.length; i++) {
-    const row = table.rows[i];
-    const cell = row.td1;
-    let value = td1.innerText;
+function showFilters() {
+  const housesData = [data[i].house.name];
+  const drp1Options = document.getElementById("drp1Options");
 
-    //create an option element with the value
-
-    let option = document.createElement("option");
-    option.value = value;
-    option.innerText = value;
-
-    document.getElementById("myDropdown1").appendChild(option);
+  //if houseData equal dropdown Menu options than display the specific houseData
+  for (let i = 0; i < drp1Options.length; i++) {
+    if (drp1Options[i] === housesData[j]) {
+      console.log(housesData(j));
+    }
   }
 }
-showDropdownFilters();
+
+//Add Eventlistener to the dropdown
+function addEventsListeners() {
+  let dropdown1 = document
+    .getElementById("drp1Options")
+    .addEventListener("change", (e) => showFilters("housesData"));
+  console.log("option changed");
+}
