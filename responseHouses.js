@@ -57,25 +57,6 @@ function displayData(data) {
     option2.innerText = data[i].name;
     dropdown2.appendChild(option2);
   }
-
-  // //creating table
-  // const tBody = document.getElementById("tBody");
-
-  // for (let i = 0; i < data.length; i++) {
-  //   let tr = document.createElement("tr");
-  //   let td1 = document.createElement("td");
-  //   if (data[i].house === null) {
-  //     td1.innerText = "House not known";
-  //   } else {
-  //     td1.innerText = data[i].house.name;
-  //   }
-  //   let td2 = document.createElement("td");
-  //   td2.innerText = data[i].name;
-
-  //   tr.appendChild(td1);
-  //   tr.appendChild(td2);
-  //   tBody.appendChild(tr);
-  // }
 }
 
 //display table
@@ -105,6 +86,9 @@ const addEventsListeners = (data) => {
     //console.log("event.target.value", event.target.value);
     filterByDropDown1(data, e);
   });
+  document.querySelector("#myDropdown2").addEventListener("change", (e) => {
+    filterByDropdown2(data, e);
+  });
 };
 
 // Connect Dropdown Filters from html with the table from JS to filter
@@ -120,6 +104,15 @@ function filterByDropDown1(data) {
   });
   console.log("filteredHouses :>> ", filteredHouses);
   createTable(filteredHouses);
+}
+
+function filterByDropdown2(data) {
+  const optionValue2 = document.getElementById("myDropdown2").value;
+  const filteredCharacters = data.filter((myObject) => {
+    return myObject.name === optionValue2 || optionValue2 === "All";
+  });
+  console.log("filteredCharacters :>> ", filteredCharacters);
+  createTable(filteredCharacters);
 }
 
 getData();
