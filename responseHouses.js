@@ -8,7 +8,7 @@ function getData() {
     .then((data) => {
       console.log("data :>> ", data);
 
-      displayData(data);
+      dropdownOptions(data);
       createTable(data);
       // filterByDropDown1(data);
       addEventsListeners(data);
@@ -24,7 +24,7 @@ function getData() {
 //   DropDownOptions(data);
 // }
 
-function displayData(data) {
+function dropdownOptions(data) {
   //Creating Dropdown Options
   // console.log("data[0].house.name :>> ", data[0].house.name);
   const dropdown = document.getElementById("myDropdown1");
