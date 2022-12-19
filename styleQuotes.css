@@ -21,11 +21,33 @@
 .navbar-brand {
     font-family: 'GameOfThrones', sans-serif;
 }
+
+
+
 h1 {
     font-family: 'GameOfThrones', sans-serif;
     color: rgb(68, 3, 3);
 }
 
+.card-container{
+    background-color: darkgrey;
+}
+
+.card{
+    background-color: darkgrey;
+    
+}
+
+.card-body{
+    background-color: darkgrey;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-color: black;
+}
+
+.card-title{
+    color: rgb(68, 3, 3);
+}
 h2 {
     font-family: 'GameOfThrones', sans-serif;
     color: rgb(68, 3, 3);

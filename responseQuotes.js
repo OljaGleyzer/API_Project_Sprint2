@@ -1,6 +1,6 @@
 // fetching data
 function getData() {
-  fetch("https://api.gameofthronesquotes.xyz/v1/random/4")
+  fetch("https://api.gameofthronesquotes.xyz/v1/random/8")
     .then((response) => {
       console.log("response :>> ", response);
       return response.json();
@@ -8,8 +8,8 @@ function getData() {
     .then((result) => {
       console.log("result :>> ", result);
 
-      //displayCards(result);
       addEventListener(result);
+      displayCards(result);
     })
     .catch((error) => {
       console.log("error :>> ", error);
@@ -24,15 +24,16 @@ function displayCards(result) {
     // card components
     cardContainer.setAttribute(
       "class",
-      "flex-direction: row d-flex justify-content-around p-2"
+      "flex-direction: row d-flex justify-content-around  p-2"
     );
 
     const card = document.createElement("div");
     card.setAttribute("class", "card");
-    card.setAttribute("style", "width: 18rem;");
+    card.setAttribute("style", "width: 18rem");
 
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
+    cardBody.setAttribute("class", "card-body");
 
     const title = document.createElement("h5");
     title.innerText = result[i].character.name;
@@ -41,7 +42,7 @@ function displayCards(result) {
     const subtitle = document.createElement("h6");
     subtitle.setAttribute("class", "card-subtitle mb-2 text muted");
 
-    if (result[i].character.house === null) {
+    if (result[i].character.house.name === null) {
       subtitle.innerText = "House not known";
     } else {
       subtitle.innerText = result[i].character.house.name;
@@ -61,11 +62,9 @@ function displayCards(result) {
 }
 
 function addEventListener(result) {
-  let btn = document.getElementById("quoteButton");
-  btn.addEventListener("click", () => {
+  let button = document.querySelector("#quoteButton");
+  button.addEventListener("click", () => {
     console.log("button clicked");
-
-    displayCards(result);
     //getData();
   });
 }
