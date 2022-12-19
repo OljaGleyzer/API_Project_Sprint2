@@ -79,15 +79,34 @@ function createTable(data) {
     tBody.appendChild(tr);
   }
 }
+
 //Add Eventlistener to the dropdown
 
 const addEventsListeners = (data) => {
+  const checkBoxes = document.querySelectorAll("input[type='checkbox']");
   document.querySelector("#myDropdown1").addEventListener("change", (e) => {
-    //console.log("event.target.value", event.target.value);
+    // select the house dropdown and change the selected value
+    document.querySelector("#myDropdown2").value = "All";
+    checkBoxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
     filterByDropDown1(data, e);
   });
   document.querySelector("#myDropdown2").addEventListener("change", (e) => {
+    // select the house dropdown and change the selected value
+    document.querySelector("#myDropdown1").value = "All";
+    checkBoxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
     filterByDropdown2(data, e);
+  });
+
+  checkBoxes.forEach((checkbox) => {
+    checkbox.addEventListener("click", () => {
+      console.log("click");
+      //combinedFilters(data);
+      filtersByCheckbox(data);
+    });
   });
 };
 
@@ -113,6 +132,25 @@ function filterByDropdown2(data) {
   });
   console.log("filteredCharacters :>> ", filteredCharacters);
   createTable(filteredCharacters);
+}
+
+function filtersByCheckbox(data) {
+  const checkedCheckboxes = document.querySelectorAll(
+    "input[type='checkbox']:checked"
+  );
+  const checkedCheckboxesValuesArray = Array.from(checkedCheckboxes).map(
+    (e) => {
+      return e.value;
+    }
+  );
+  const filteredCheckboxes = data.filter((myObject) => {
+    return (
+      checkedCheckboxesValuesArray.includes(myObject.name) ||
+      checkedCheckboxesValuesArray.length === 0
+    );
+  });
+  console.log("filteredCheckboxes :>> ", filteredCheckboxes);
+  createTable(filteredCheckboxes);
 }
 
 getData();
