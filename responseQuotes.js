@@ -8,12 +8,15 @@ function getData() {
     .then((result) => {
       console.log("result :>> ", result);
 
-      addEventListener(result);
-      displayCards(result);
+      controller(result);
     })
     .catch((error) => {
       console.log("error :>> ", error);
     });
+}
+
+function controller(result) {
+  displayCards(result);
 }
 
 function displayCards(result) {
@@ -61,12 +64,13 @@ function displayCards(result) {
   }
 }
 
-function addEventListener(result) {
+function addEventListener() {
   let button = document.querySelector("#quoteButton");
   button.addEventListener("click", () => {
     console.log("button clicked");
-    //getData();
+    getData();
   });
 }
-
-getData();
+// console.log("addEventListener(result) :>> ", addEventListener());
+addEventListener();
+//getData();
